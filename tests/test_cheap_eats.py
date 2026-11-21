@@ -51,3 +51,8 @@ def test_format_recipe_numbers_every_step():
 def test_every_recipe_has_steps_and_ingredients():
     for recipe in RECIPES:
         assert recipe.steps and recipe.ingredients
+
+
+def test_recipe_slugs_are_unique():
+    slugs = [r.slug for r in RECIPES]
+    assert len(slugs) == len(set(slugs))
