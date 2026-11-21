@@ -1,6 +1,6 @@
 # copilot-starter: Cheap Eats
 
-A small Python app that gives step-by-step cooking instructions for meals that cost about $0.40 to $1.10 a serving. It also holds my GitHub Copilot setup (custom instructions plus /review and /tests prompt files).
+A small Python app that gives step-by-step cooking instructions for meals that cost about $0.40 to $1.50 a serving. It also holds my GitHub Copilot setup (custom instructions plus /review and /tests prompt files).
 
 ## Run it
 
@@ -21,7 +21,7 @@ pytest
 
 ## Recipes
 
-Banana Oatmeal, Lentil Soup, Rice and Beans, Egg Fried Rice, Bean and Rice Burritos, Potato and Egg Hash. Costs are rough US grocery estimates.
+Banana Oatmeal, From-Scratch Pancakes, Pasta with Garlic and Oil, Lentil Soup, Rice and Beans, Egg Fried Rice, Black Bean Tacos, Bean and Rice Burritos, Tuna Melt, Potato and Egg Hash, Cabbage and Sausage Skillet, Baked Chicken Thighs and Rice. Costs are rough US grocery estimates.
 
 ## Copilot setup
 
