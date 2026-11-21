@@ -119,6 +119,89 @@ RECIPES: tuple[Recipe, ...] = (
             "Mash in half a banana and a pinch of cinnamon.",
         ),
     ),
+    Recipe(
+        slug="pasta-garlic-oil",
+        name="Pasta with Garlic and Oil",
+        servings=4,
+        cost_per_serving=0.55,
+        minutes=15,
+        ingredients=("pasta", "garlic", "oil", "salt", "red pepper flakes"),
+        steps=(
+            "Boil 1 lb pasta in well-salted water until just tender. Save 1 cup of the water.",
+            "While it cooks, slice 4 garlic cloves and warm them in 1/4 cup oil on low for 3 minutes.",
+            "Add a pinch of red pepper flakes, then the drained pasta.",
+            "Toss with splashes of pasta water until glossy. Salt to taste.",
+        ),
+    ),
+    Recipe(
+        slug="black-bean-tacos",
+        name="Black Bean Tacos",
+        servings=4,
+        cost_per_serving=0.95,
+        minutes=15,
+        ingredients=("tortillas", "canned beans", "onion", "cumin", "salsa"),
+        steps=(
+            "Dice half an onion and cook in 1 tsp oil for 4 minutes.",
+            "Add 1 can drained black beans and 1 tsp cumin. Cook 5 minutes, mashing a few.",
+            "Warm 8 small tortillas in a dry pan.",
+            "Fill with beans and top with salsa.",
+        ),
+    ),
+    Recipe(
+        slug="chicken-thighs-rice",
+        name="Baked Chicken Thighs and Rice",
+        servings=4,
+        cost_per_serving=1.50,
+        minutes=45,
+        ingredients=("chicken thighs", "rice", "oil", "salt", "garlic powder"),
+        steps=(
+            "Heat the oven to 425°F. Rub 4 bone-in thighs with oil, salt and garlic powder.",
+            "Bake skin side up on a sheet pan for 35 to 40 minutes, to 175°F inside.",
+            "Meanwhile simmer 1 cup rice in 2 cups salted water, covered, for 18 minutes.",
+            "Spoon the pan juices over the rice and serve.",
+        ),
+    ),
+    Recipe(
+        slug="cabbage-sausage",
+        name="Cabbage and Sausage Skillet",
+        servings=4,
+        cost_per_serving=1.25,
+        minutes=25,
+        ingredients=("cabbage", "smoked sausage", "onion", "oil", "salt"),
+        steps=(
+            "Slice 1 smoked sausage into coins and brown in 1 tbsp oil, 5 minutes.",
+            "Add 1 sliced onion and half a head of chopped cabbage.",
+            "Cover and cook 12 minutes, stirring now and then, until soft and browned.",
+            "Salt and pepper to taste.",
+        ),
+    ),
+    Recipe(
+        slug="tuna-melt",
+        name="Tuna Melt",
+        servings=2,
+        cost_per_serving=1.05,
+        minutes=10,
+        ingredients=("canned tuna", "bread", "cheese", "mayo"),
+        steps=(
+            "Mix 1 drained can of tuna with 2 tbsp mayo.",
+            "Spread on 2 slices of bread and top each with cheese and another slice.",
+            "Cook in a buttered or oiled pan over medium heat, 3 minutes per side.",
+        ),
+    ),
+    Recipe(
+        slug="pancakes",
+        name="From-Scratch Pancakes",
+        servings=3,
+        cost_per_serving=0.45,
+        minutes=20,
+        ingredients=("flour", "eggs", "milk or water", "sugar", "baking powder", "oil"),
+        steps=(
+            "Whisk 1 1/2 cups flour, 1 tbsp sugar, 1 tbsp baking powder and a pinch of salt.",
+            "Add 1 egg, 1 1/4 cups milk or water and 2 tbsp oil. Stir until just mixed.",
+            "Pour 1/4 cup at a time onto an oiled pan over medium heat.",
+            "Flip when bubbles form, about 2 minutes, then cook 1 more minute.",
+        ),
+    ),
 )
 
 
@@ -138,7 +221,17 @@ def under_budget(max_cost: float) -> list[Recipe]:
     )
 
 
-PANTRY = ("oil", "salt", "cumin", "cinnamon", "soy sauce")
+PANTRY = (
+    "oil",
+    "salt",
+    "cumin",
+    "cinnamon",
+    "soy sauce",
+    "garlic powder",
+    "red pepper flakes",
+    "sugar",
+    "baking powder",
+)
 
 
 def can_make(on_hand: list[str], max_missing: int = 2) -> list[tuple[Recipe, list[str]]]:
@@ -186,7 +279,7 @@ def main(argv: list[str] | None = None) -> None:
 
     if args.command == "list":
         for r in under_budget(args.max_cost):
-            print(f"{r.slug:<16} ${r.cost_per_serving:.2f}/serving  {r.minutes} min  {r.name}")
+            print(f"{r.slug:<20} ${r.cost_per_serving:.2f}/serving  {r.minutes} min  {r.name}")
     elif args.command == "show":
         print(format_recipe(get_recipe(args.slug), args.servings))
     else:
@@ -195,7 +288,7 @@ def main(argv: list[str] | None = None) -> None:
             print("Nothing close yet. Rice, beans or eggs unlock the most recipes.")
         for recipe, missing in matches:
             need = f" (need: {', '.join(missing)})" if missing else " (you have everything)"
-            print(f"{recipe.slug:<16} {recipe.name}{need}")
+            print(f"{recipe.slug:<20} {recipe.name}{need}")
 
 
 if __name__ == "__main__":
